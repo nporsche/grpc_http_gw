@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 
-	"github.com/nporsche/gapidemo/userapi"
+	"github.com/nporsche/grpc_http_gw/userapi"
 	"golang.org/x/net/context"
 )
 

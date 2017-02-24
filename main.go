@@ -11,8 +11,8 @@ import (
 	"flag"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"github.com/nporsche/gapidemo/server"
-	"github.com/nporsche/gapidemo/userapi"
+	"github.com/nporsche/grpc_http_gw/server"
+	"github.com/nporsche/grpc_http_gw/userapi"
 	"google.golang.org/grpc"
 )
 
@@ -48,10 +48,7 @@ func launchGrpcServer(addr string) {
 		}
 
 		go func() {
-			opts := &http2.ServeConnOpts{
-				Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-					grpcServer.ServeHTTP(w, r)
-				})}
+			opts := &http2.ServeConnOpts{Handler: grpcServer}
 			srv.ServeConn(conn, opts)
 		}()
 	}
