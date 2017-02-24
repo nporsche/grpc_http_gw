@@ -2,7 +2,7 @@
 According to gRPC proto we are able to generate a HTTP RESTful gateway：  
 https://coreos.com/blog/grpc-protobufs-swagger.html
 
-[grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway)However，there is a limitation which only support HTTPS.
+[grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) project mentioned at above article however has a big limitation that is only support HTTPS.
 The reason is official net/http package only support tls+http2 but no support for non-tls http2. More detail can reference this [article](http://nullget.sourceforge.net/?q=node/885&lang=zh-hant)。
 
 Actually, HTTPS is overhead in internal network. The mainstream idea is having nginx as the https door routing backend http service. So I deep 
