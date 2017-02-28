@@ -9,10 +9,15 @@ pb:
 		   --grpc-gateway_out=logtostderr=true:. \
 		    ./userapi/api.proto
 
+doc:
+	protoc -I./ -I/usr/local/include -I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+		--swagger_out=logtostderr=true:. \
+		./userapi/api.proto
+
 cert:
 	openssl genrsa -out server.key 2048	
 	openssl req -new -x509 -key server.key -out server.pem -days 3650
 
 .PHONY:
-	pb cert
+	pb cert doc
 

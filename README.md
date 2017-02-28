@@ -72,6 +72,19 @@ func launchGrpcServer(addr string) {
 	}
 }
 ```
+Another simple way is launch grpc server with raw listener which has same effect with above one:
+```
+func launchGrpcServer(addr string) {
+	grpcServer := grpc.NewServer()
+	userapi.RegisterUserApiServer(grpcServer, &server.UserHandler{})
+
+	lsner, err := net.Listen("tcp", addr)
+	if err != nil {
+		panic(err)
+	}
+	grpcServer.Serve(lsner)
+}
+```
 After grpc server launched, then launch grpc http gateway with http1.1 server:
 ```
 func LaunchGrpcGateway(grpcAddr string, gatewayAddr string){
